@@ -7,27 +7,19 @@ var app = angular
             $routeProvider
                 .when("/", {
                     templateUrl: "partial/home.html",
-                    controller: "homeController"
-                })
-                .when("/dashboard", {
-                    templateUrl: "/partial/dashboard.html",
-                    controller: "homeController"
-                })
-                .when("/search", {
-                    templateUrl: "/partial/search.html",
-                    controller: "homeController"
+                    controller: "songsController"
                 })
                 .when("/songs", {
                     templateUrl: "partial/songs.html",
                     controller: "songsController"
                 })
-                .when("/playlists", {
-                    templateUrl: "/partial/playlists.html",
-                    controller: "songsController"
+                .when("/songs/:title", {
+                    templateUrl: "partial/song.html",
+                    controller: "songController"
                 })
-                .when("/login", {
-                    templateUrl: "/partial/login.html",
-                    controller: "songsController"
+                .when("/addSong", {
+                    templateUrl: "partial/addSong.html",
+                    controller: "songController"
                 })
         }])
         .controller("homeController", function ($scope, $http, $log, $location, $anchorScroll){
@@ -44,11 +36,20 @@ var app = angular
                         $scope.error = reason;
                     });
 
-            $scope.scrollTo = function(scrollLocation){
-                $location.hash(scrollLocation);
-                $anchorScroll.yOffset = 20;
-                $anchorScroll();
-            }
+            $scope.go = function ( path ) {
+                $location.path( path );
+            };
+        })
+        .controller("songController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
+
+            $http({
+                method:'GET',
+                url:"/songs/search/findByTitle?title=" + $routeParams.title})
+                    .then(function (response) {
+                        $scope.song = response.data._embedded.songs[0];
+                    }, function (reason) {
+                        $scope.error = reason;
+                    });
         });
 
 $(document).ready(function () {
@@ -65,3 +66,4 @@ $(function() {
         $(this).addClass("active");
     });
 });
+
