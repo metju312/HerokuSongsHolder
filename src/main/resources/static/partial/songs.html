@@ -1,0 +1,28 @@
+<div class="title-content">
+    <h2>Your songs</h2>
+</div>
+<div class="content" id="content">
+
+    <div class="content-inner">
+        <div class="row search-row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Length</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="song in songs">
+                        <td> {{ song.id }}</td>
+                        <td> {{ song.title }}</td>
+                        <td> {{ song.length }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

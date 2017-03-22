@@ -1,0 +1,286 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i");
+
+:root {
+    --primary-color: #FF9900;
+    --primary-active-color: #b45d00;
+    --primary-hover-color: #ffdb00;
+    --green-color: #36C117;
+    --green-label-color: #1AB394;
+    --background-color: #F3F3F4;
+    --text-color: #676A6C;
+    --text-color: #676A6C;
+    --text-white-color: #d4d7d9;
+    --black-color: #0A0A0A;
+    --link-active-color: #1a1a1a;
+    --white-color: #FFFFFF;
+    --gray-color: #252525;
+    --gray-hover-color: #1b1b1b;
+    --gray-line-color: #E7EAEC;
+    --top-border-color: #E7EAEC;
+    --bottom-border-color: #F#F#F4;
+
+    /*background*/
+    --background-dark-color: #1A1A1A;
+    --background-normal-color: #212121;
+    --background-light-color: #262626;
+    --background-active-color: #232323;
+    --background-border-color: #171717;
+
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-normal-color);
+    color: var(--text-color);
+    height: 100%;
+}
+.container-fluid{
+    width: 100%;
+}
+.logo {
+    float: left;
+    padding-top: 10px;
+    padding-left: 24px;
+    padding-bottom: 10px;
+    margin: 0;
+    font-size: 23px;
+    color: var(--white-color);
+    text-decoration: none;
+}
+.logo span {
+    font-weight: 300;
+    color: var(--primary-color);
+}
+.logo-row{
+    border-bottom: 1px solid var(--background-light-color);
+}
+.logo:hover, .logo:visited, .logo:active, .logo:link{
+    text-decoration: none;
+    color: var(--white-color);
+}
+.side-menu{
+    background-color: var(--background-dark-color);
+    padding: 0px;
+    margin: 0px;
+}
+.side-menu ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+.side-menu .link a{
+    padding: 12px 20px;
+    padding-left: 24px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 13px;
+    display: block;
+}
+.side-menu .glyphicon{
+    margin-right: 6px;
+}
+.side-menu .link a:hover{
+    background-color: var(--background-active-color);
+    color: var(--white-color);
+    display: block;
+}
+.side-menu .active a{
+    color: var(--white-color);
+    background-color: var(--background-active-color);
+    border-left: 4px solid var(--primary-color);
+    padding-left: 20px;
+}
+.side-menu .collapseable li {
+    padding-left: 20px;
+    padding-top: 5px;
+}
+.side-menu .collapseable a {
+    font-size: 12px;
+    padding: 0px 10px;
+    text-decoration: none;
+    display: block;
+}
+.side-menu .collapseable{
+    /*border-left: 4px solid var(--primary-active-color);*/
+    background-color: var(--gray-hover-color);
+}
+.side-menu .link > ul > li {
+    padding-bottom: 6px;
+}
+.display-table {
+    display: table;
+    padding: 0px;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+.display-table-row {
+    display: table-row;
+    height: 100%;
+}
+.display-table-cell {
+    display: table-cell;
+    float: none;
+    height: 100%;
+}
+.valign-top{
+    vertical-align: top;
+}
+.nav-header {
+    background-color: var(--background-dark-color);
+    border-bottom: 1px solid var(--background-light-color)
+}
+.nav-header .header-search-field{
+    padding-top: 17px;
+    vertical-align: center;
+    border: none;
+    width: 300px;
+    outline: none;
+    background-color: var(--background-dark-color);
+}
+.nav-header ul{
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    color: var(--text-color);
+}
+.nav-header ul li{
+    float: left;
+    margin-left: 15px;
+    padding: 17px 0px;
+}
+.nav-header ul .glyphicon{
+    color: var(--text-color);
+}
+.label-message{
+    background-color: var(--green-label-color);
+}
+.nav-header ul a{
+    text-decoration: none;
+}
+.nav-header .logout{
+    color: var(--text-color);
+}
+.nav-header .logout:hover{
+    color: var(--text-color);
+}
+.nav-header .welcome-message{
+    margin-right: 20px;
+}
+.nav-header ul .label{
+    position: absolute;
+    margin-top: -10px;
+    margin-left: -5px;
+}
+.nav-header .fixed-width{
+    width: 35px;
+}
+.admin-footer{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    background-color: var(--background-dark-color);
+    padding: 10px;
+    font-size: 12px;
+    color: var(--text-color);
+    border-left: 1px solid var(--background-normal-color)
+}
+.navbar-default{
+    background-color: var(--white-color);
+}
+.navbar-default .navbar-toggle{
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    padding: 10px;
+    margin: 4px;
+}
+.navbar-default .icon-bar{
+    border: 1px var(--white-color) solid;
+}
+.navbar-default .navbar-toggle:hover{
+    background-color: var(--primary-color);
+}
+.navbar-default .navbar-toggle:focus{
+    background-color: var(--primary-color);
+}
+.content{
+    /*margin: 40px 14px 50px 14px;*/
+    padding: 14px 40px 14px 40px;
+    background-color: var(--background-normal-color);
+}
+.content header{
+    border-bottom: 1px var(--bottom-border-color) solid;
+    padding-bottom: 10px;
+}
+.page_title{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0px;
+}
+.search-field{
+    height: 31px;
+    border: 1px var(--top-border-color) solid;
+}
+.search-row{
+    margin-bottom: 30px;
+}
+.btn-primary{
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    background-image: none;
+}
+.btn-primary:hover{
+    background-color: var(--primary-hover-color);
+    border: 1px solid var(--primary-hover-color);
+    background-image: none;
+}
+.btn-primary:focus{
+    background-color: var(--primary-hover-color);
+    border: 1px solid var(--primary-hover-color);
+    background-image: none;
+}
+.btn-primary:active, .btn-primary:visited{
+    background-color: var(--primary-active-color);
+    border: 1px solid var(--primary-active-color);
+    background-image: none;
+}
+.go{
+    height: 31px;
+    background-color: var(--primary-color);
+}
+.label-success{
+    background-color: var(--primary-color);
+}
+.label-lg{
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+}
+.label-sm{
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.label-xs{
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.pagination a{
+    color: var(--primary-color) !important;
+}
+.title-content{
+    background-color: var(--background-light-color);
+    display: block;
+}
+.title-content h2{
+    padding-left: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin: 0;
+    color: var(--white-color);
+    font-size: 20px;
+}
