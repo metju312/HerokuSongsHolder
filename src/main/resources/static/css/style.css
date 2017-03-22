@@ -51,11 +51,15 @@ body {
     color: var(--primary-color);
 }
 .logo-row{
-    border-bottom: 1px solid var(--background-light-color);
+    /*border-bottom: 1px solid var(--background-light-color);*/
 }
 .logo:hover, .logo:visited, .logo:active, .logo:link{
     text-decoration: none;
     color: var(--white-color);
+}
+.add-song-button{
+    border: none;
+    text-decoration: none;
 }
 .side-menu{
     background-color: var(--background-dark-color);
@@ -107,6 +111,22 @@ body {
 .side-menu .link > ul > li {
     padding-bottom: 6px;
 }
+.songs-table a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+.songs-table a:hover{
+    color: var(--white-color);
+}
+.header-search-field{
+    padding-top: 17px;
+    padding-bottom: 17px;
+    vertical-align: center;
+    border: none;
+    width: 200px;
+    outline: none;
+    background-color: var(--background-dark-color);
+}
 .display-table {
     display: table;
     padding: 0px;
@@ -129,14 +149,6 @@ body {
 .nav-header {
     background-color: var(--background-dark-color);
     border-bottom: 1px solid var(--background-light-color)
-}
-.nav-header .header-search-field{
-    padding-top: 17px;
-    vertical-align: center;
-    border: none;
-    width: 300px;
-    outline: none;
-    background-color: var(--background-dark-color);
 }
 .nav-header ul{
     margin: 0px;
