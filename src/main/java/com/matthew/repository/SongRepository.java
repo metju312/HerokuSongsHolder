@@ -1,6 +1,7 @@
 package com.matthew.repository;
 
 import com.matthew.model.Song;
+import com.matthew.model.YTData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
