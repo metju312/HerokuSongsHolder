@@ -1,5 +1,10 @@
 var app = angular
         .module("myModule",["ngRoute"])
+        .filter('trustAsResourceUrl', ['$sce', function($sce) {
+            return function(val) {
+                return $sce.trustAsResourceUrl(val);
+            };
+        }])
         .config(['$locationProvider', function($locationProvider) {
             $locationProvider.hashPrefix('');
         }])
@@ -13,7 +18,7 @@ var app = angular
                     templateUrl: "partial/songs.html",
                     controller: "songsController"
                 })
-                .when("/songs/:title", {
+                .when("/songs/:id", {
                     templateUrl: "partial/song.html",
                     controller: "songController"
                 })
@@ -44,12 +49,30 @@ var app = angular
 
             $http({
                 method:'GET',
-                url:"/songs/search/findByTitle?title=" + $routeParams.title})
+                url:"/songs/" + $routeParams.id})
                     .then(function (response) {
-                        $scope.song = response.data._embedded.songs[0];
+                        $scope.song = response.data;
                     }, function (reason) {
                         $scope.error = reason;
                     });
+
+            $http({
+                method:'GET',
+                url:"/songs/"+ $routeParams.id + "/ytDatas"})
+                .then(function (response) {
+                    $scope.yTDatas = response.data._embedded.yTDatas;
+                }, function (reason) {
+                    $scope.error = reason;
+                });
+
+            $http({
+                method:'GET',
+                url:"/songs/"+ $routeParams.id + "/links"})
+                .then(function (response) {
+                    $scope.links = response.data._embedded.links;
+                }, function (reason) {
+                    $scope.error = reason;
+                });
         });
 
 $(document).ready(function () {
