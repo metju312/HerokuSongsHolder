@@ -18,7 +18,7 @@ var app = angular
                     templateUrl: "partial/songs.html",
                     controller: "songsController"
                 })
-                .when("/songs/:id", {
+                .when("/songs/:title", {
                     templateUrl: "partial/song.html",
                     controller: "songController"
                 })
@@ -46,33 +46,30 @@ var app = angular
             };
         })
         .controller("songController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
-
             $http({
                 method:'GET',
-                url:"/songs/" + $routeParams.id})
+                url:"/songs/search/findByTitle?title=" + $routeParams.title})
                     .then(function (response) {
-                        $scope.song = response.data;
+                        $scope.song = response.data._embedded.songs[0];
+                        $http({
+                            method:'GET',
+                            url:$scope.song._links.ytDatas.href})
+                            .then(function (response) {
+                                $scope.yTDatas = response.data._embedded.yTDatas;
+                            }, function (reason) {
+                                $scope.error = reason;
+                            });
+                        $http({
+                            method:'GET',
+                            url:$scope.song._links.links.href})
+                            .then(function (response) {
+                                $scope.links = response.data._embedded.links;
+                            }, function (reason) {
+                                $scope.error = reason;
+                            });
                     }, function (reason) {
                         $scope.error = reason;
                     });
-
-            $http({
-                method:'GET',
-                url:"/songs/"+ $routeParams.id + "/ytDatas"})
-                .then(function (response) {
-                    $scope.yTDatas = response.data._embedded.yTDatas;
-                }, function (reason) {
-                    $scope.error = reason;
-                });
-
-            $http({
-                method:'GET',
-                url:"/songs/"+ $routeParams.id + "/links"})
-                .then(function (response) {
-                    $scope.links = response.data._embedded.links;
-                }, function (reason) {
-                    $scope.error = reason;
-                });
         });
 
 $(document).ready(function () {

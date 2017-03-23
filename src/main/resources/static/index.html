@@ -55,7 +55,7 @@
                         <tbody>
                             <tr ng-repeat="song in songs | filter:searchSongText">
                                 <td>
-                                    <a href="#/songs/{{$index + 1}}">
+                                    <a href="#/songs/{{song.title}}">
                                         <span>{{$index + 1}}. {{song.title}}</span>
                                     </a>
                                 </td>
