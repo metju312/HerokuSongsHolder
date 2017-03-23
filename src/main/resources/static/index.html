@@ -55,9 +55,8 @@
                         <tbody>
                             <tr ng-repeat="song in songs | filter:searchSongText">
                                 <td>
-                                    <a href="#/songs/{{song.title}}">
-                                        <span class="glyphicon glyphicon-music" aria hidden="true"></span>
-                                        <span>{{song.title}}</span>
+                                    <a href="#/songs/{{$index + 1}}">
+                                        <span>{{$index + 1}}. {{song.title}}</span>
                                     </a>
                                 </td>
                             </tr>
