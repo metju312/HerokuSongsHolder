@@ -21,41 +21,36 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
-@RequestMapping("/song")
+@RequestMapping("/songs")
 @RestController
 @ExposesResourceFor(Song.class)
-public class SongController implements ResourceProcessor<RepositoryLinksResource> {
+public class SongController{
 
     @Autowired
     SongRepository songRepository;
 
-
-    @RequestMapping("/welcome")
-    public String hello(Model model) {
-        System.out.println("Welcome Friends!");
-        model.addAttribute("msg", "Welcome Friends!");
-        return "result";
+    @GetMapping
+    public List<Song> getAll() {
+        return (List<Song>) songRepository.findAll();
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/al", method = RequestMethod.GET, produces = "application/json")
-    public String getAllSongs() {
-        Iterable<Song> songs= songRepository.findAll();
-        return "Hello";
+    @PostMapping
+    public Song create(@RequestBody Song song) {
+        return songRepository.save(song);
     }
 
-
-    @ResponseBody
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Iterable<Song> listEntities(
-            Pageable pageable) throws ResourceNotFoundException {
-        Iterable<Song> songs= songRepository.findAll();
-        return songs;
+    @GetMapping("/{id}")
+    public Song findOne(@PathVariable int id) {
+        return songRepository.findOne((long) id);
     }
 
-    @Override
-    public RepositoryLinksResource process(RepositoryLinksResource resource) {
-        resource.add(ControllerLinkBuilder.linkTo(SongController.class).withRel("others"));
-        return resource;
+    @PutMapping
+    public Song update(@RequestBody Song song) {
+        return songRepository.save(song);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        songRepository.delete((long) id);
     }
 }
