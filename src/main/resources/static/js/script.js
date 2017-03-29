@@ -24,7 +24,7 @@ var app = angular
                 })
                 .when("/addSong", {
                     templateUrl: "partial/addSong.html",
-                    controller: "songController"
+                    controller: "addSongController"
                 })
         }])
         .controller("homeController", function ($scope, $http, $log, $location, $anchorScroll){
@@ -36,7 +36,7 @@ var app = angular
                 method:'GET',
                 url:"/songs"})
                     .then(function (response) {
-                        $scope.songs = response.data._embedded.songs;
+                        $scope.songs = response.data;
                     }, function (reason) {
                         $scope.error = reason;
                     });
@@ -70,6 +70,28 @@ var app = angular
                     }, function (reason) {
                         $scope.error = reason;
                     });
+        })
+        .controller("addSongController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
+            $scope.newYtDatas = [];
+
+            $scope.addNewYtData = function () {
+                $scope.newYtDatas.push({
+                    iframe: ""
+                });
+            };
+
+            $scope.newLinks = [];
+
+            $scope.addNewLink = function () {
+                $scope.newLinks.push({
+                    title: "",
+                    url: ""
+                });
+            };
+
+            $scope.submitNewSong = function () {
+                //post ytdata and links here
+            };
         });
 
 $(document).ready(function () {
