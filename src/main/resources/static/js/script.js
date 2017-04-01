@@ -1,5 +1,5 @@
 var app = angular
-        .module("myModule",["ngRoute"])
+        .module("myModule",["ui.router"])
         .filter('trustAsResourceUrl', ['$sce', function($sce) {
             return function(val) {
                 return $sce.trustAsResourceUrl(val);
@@ -8,70 +8,53 @@ var app = angular
         .config(['$locationProvider', function($locationProvider) {
             $locationProvider.hashPrefix('');
         }])
-        .config(["$routeProvider", function($routeProvider){
-            $routeProvider
-                .when("/", {
+        .config(["$stateProvider", function($stateProvider){
+            $stateProvider
+                .state("home", {
+                    url: "/",
                     templateUrl: "partial/home.html",
                     controller: "songsController"
                 })
-                .when("/songs", {
+                .state("songs", {
+                    url: "/songs",
                     templateUrl: "partial/songs.html",
-                    controller: "songsController"
+                    controller: "songsController",
+                    resolve:  {
+                        songsList: ['$http', function ($http) {
+                            return $http.get('songs')
+                                .then(function (response) {
+                                    return response.data;
+                                })
+                        }]
+                    }
                 })
-                .when("/songs/:title", {
+                .state("songByTitle", {
+                    url: "/songs/:title",
                     templateUrl: "partial/song.html",
                     controller: "songController"
                 })
-                .when("/addSong", {
+                .state("addSong", {
+                    url: "/addSong",
                     templateUrl: "partial/addSong.html",
-                    controller: "addSongController"
+                    controller: "songsController"
                 })
         }])
         .controller("homeController", function ($scope, $http, $log, $location, $anchorScroll){
 
         })
-        .controller("songsController", function ($scope, $http, $log, $location, $anchorScroll){
-
-            $http({
-                method:'GET',
-                url:"/songs"})
-                    .then(function (response) {
-                        $scope.songs = response.data;
-                    }, function (reason) {
-                        $scope.error = reason;
-                    });
+        .controller("songsController", ['$scope','$http','$log','$state','$location','$anchorScroll', 'songs','songsList', function ($scope, $http, $log, $state, $location, $anchorScroll, songs, songsList){
+            // var vm = this;
+            // vm.reloadData = function () {
+            //     $state.reload();
+            // };
+            $scope.songs = songsList;
 
             $scope.go = function ( path ) {
                 $location.path( path );
             };
-        })
-        .controller("songController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
-            $http({
-                method:'GET',
-                url:"/songs/search/findByTitle?title=" + $routeParams.title})
-                    .then(function (response) {
-                        $scope.song = response.data._embedded.songs[0];
-                        $http({
-                            method:'GET',
-                            url:$scope.song._links.ytDatas.href})
-                            .then(function (response) {
-                                $scope.yTDatas = response.data._embedded.yTDatas;
-                            }, function (reason) {
-                                $scope.error = reason;
-                            });
-                        $http({
-                            method:'GET',
-                            url:$scope.song._links.links.href})
-                            .then(function (response) {
-                                $scope.links = response.data._embedded.links;
-                            }, function (reason) {
-                                $scope.error = reason;
-                            });
-                    }, function (reason) {
-                        $scope.error = reason;
-                    });
-        })
-        .controller("addSongController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
+
+
+
             $scope.newYtDatas = [];
 
             $scope.addNewYtData = function () {
@@ -89,9 +72,50 @@ var app = angular
                 });
             };
 
-            $scope.submitNewSong = function () {
-                //post ytdata and links here
+            $scope.addNewSong = function (song) {
+                song.links = $scope.newLinks;
+                song.yTDatas = $scope.newYtDatas;
+                $http.post('songs', song).then(function(response) {
+                    console.log("Dodało");
+                    $scope.go('/');
+                    $scope.reloadRoute();
+                })
             };
+
+            $scope.reloadRoute = function() {
+                $route.reload();
+            }
+
+            $scope.newSong = {};
+        }])
+        .controller("songController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
+            $http({
+                method:'GET',
+                url:"/songs/search/findByTitle?title=" + $routeParams.title})
+                    .then(function (response) {
+                        $scope.song = response.data._embedded.songs[0];
+                        $http({
+                            method:'GET',
+                            url:$scope.song._links.ytDatas.href})
+                            .then(function (response) {
+                                $scope.yTDatas = response.data._embedded.yTDatas;
+                            }, function (reason) {
+                                $scope.error = reason;
+                            });
+                        $http({
+                            method:'GET',
+                            url:"/links/songid/" + $scope.id})
+                            .then(function (response) {
+                                $scope.links = response.data;
+                            }, function (reason) {
+                                $scope.error = reason;
+                            });
+                    }, function (reason) {
+                        $scope.error = reason;
+                    });
+        })
+        .controller("addSongController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
+
         });
 
 $(document).ready(function () {

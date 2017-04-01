@@ -10,7 +10,9 @@
 
     <!--included scripts-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.6.2/angular-route.min.js"></script>
+    <!--<script src="https://code.angularjs.org/1.6.2/angular-route.min.js"></script>-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>-->
+    <script src="//unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <!-- Bootstrap -->
@@ -25,6 +27,7 @@
 
     <!--my own files-->
     <script src="/js/script.js"></script>
+    <script src="/js/songService.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/style.css" />
 
 
@@ -36,7 +39,12 @@
         <div class="col-md-2 col-sm-1 hidden-xs side-menu display-table-cell valign-top" id="side-menu">
             <div class="row logo-row">
                 <div class="col-md-12">
-                    <a class="logo hidden-sm hidden-xs" href="#/">Songs<span>Holder</span></a>
+                    <a class="logo hidden-sm hidden-xs" href="#/home">Songs<span>Holder</span></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="hidden-sm hidden-xs" ui-sref="songs">Songs</a>
                 </div>
             </div>
             <div class="row">
@@ -68,7 +76,7 @@
         <!-- main content -->
         <div class="col-md-10 col-sm-11 display-table-cell valign-top box">
             <div class="row">
-                <ng-view/>
+                <ui-view/>
             </div>
             <div class="row">
                 <footer class="admin-footer clearfix">

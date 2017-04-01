@@ -1,11 +1,11 @@
 <form class="add-song-form" ng-controller="addSongController">
 	<div class="form-group">
 		<label for="song-title-input">Type new song title</label>
-		<input class="form-control" type="text" placeholder="Title" id="song-title-input">
+		<input class="form-control" type="text" placeholder="Title" id="song-title-input" ng-model="newSong.title">
 	</div>
 	<div class="form-group">
 		<label for="song-lyrics-textarea">Type new song lyrics</label>
-		<textarea class="form-control" id="song-lyrics-textarea" rows="20"></textarea>
+		<textarea class="form-control" id="song-lyrics-textarea" rows="20" ng-model="newSong.lyrics"></textarea>
 	</div>
 	<div class="form-group">
 		<label for="new-ytdatas">Add YouTube iframe's URL</label>
@@ -27,5 +27,5 @@
 	<div class="form-group">
 		<button class="btn btn-primary" ng-click="addNewLink()">New Link</button>
 	</div>
-	<button type="submit" class="btn btn-primary submit-button">Submit</button>
+	<button type="submit" class="btn btn-primary submit-button" ng-click="addNewSong(newSong)">Submit</button>
 </form>
