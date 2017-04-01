@@ -127,7 +127,7 @@ body {
     border: none;
     width: 200px;
     outline: none;
-    background-color: var(--background-dark-color);
+    background-color: var(--background-normal-color);
 }
 .display-table {
     display: table;
@@ -311,4 +311,8 @@ body {
 .submit-button{
     margin-top: 10px;
     margin-bottom: 10px;
+}
+.partial-content{
+    padding-left: 30px;
+    padding-right: 30px;
 }
