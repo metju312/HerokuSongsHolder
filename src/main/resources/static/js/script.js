@@ -10,7 +10,7 @@ var app = angular
         }])
         .config(["$routeProvider", function($routeProvider){
             $routeProvider
-                .when("/home", {
+                .when("/", {
                     templateUrl: "partial/home.html",
                     controller: "songsController"
                 })
@@ -27,13 +27,14 @@ var app = angular
                     controller: "songsController"
                 })
         }])
-        .controller("homeController", function ($scope, $http, $log, $location, $anchorScroll){
-
-        })
         .controller("songsController",function ($scope, $http, $log, $route, $location, songService){
             songService.getSongs().then(function (response) {
                 $scope.songs = response.data;
             });
+
+            $scope.reloadPage = function () {
+                $route.reload();
+            };
 
             $scope.go = function ( path ) {
                 $location.path( path );
@@ -64,7 +65,7 @@ var app = angular
                 $http.post('songs', song).then(function(response) {
                     console.log("Dodało");
                     $scope.go('/');
-                    $scope.reloadRoute();
+                    $scope.reloadPage();
                 })
             };
 
