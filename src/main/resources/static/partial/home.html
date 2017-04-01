@@ -1,1 +1,41 @@
-<h1>Home</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 title-content">
+            <h2>Your songs</h2>
+        </div>
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" class="header-search-field hidden-sm hidden-xs" placeholder="Search for songs..." ng-model="searchSongText.title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table songs-table">
+                    <thead>
+                        <th>#</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="song in songs | filter:searchSongText" ng-click="showSong(song)">
+                        <td class="col-md-2">
+                            {{$index + 1}}
+                        </td>
+                        <td class="col-md-6">
+                            <!--<a href="#/songs/{{song.title}}">-->
+                                <!--<span>{{song.title}}</span>-->
+                            <!--</a>-->
+                            <span>{{song.title}}</span>
+                        </td>
+                        <td class="col-md-4">
+                            <span>{{song.date | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
