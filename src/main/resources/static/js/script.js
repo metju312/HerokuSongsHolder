@@ -1,5 +1,5 @@
 var app = angular
-        .module("myModule",["ui.router"])
+        .module("myModule",["ngRoute"])
         .filter('trustAsResourceUrl', ['$sce', function($sce) {
             return function(val) {
                 return $sce.trustAsResourceUrl(val);
@@ -8,33 +8,21 @@ var app = angular
         .config(['$locationProvider', function($locationProvider) {
             $locationProvider.hashPrefix('');
         }])
-        .config(["$stateProvider", function($stateProvider){
-            $stateProvider
-                .state("home", {
-                    url: "/",
+        .config(["$routeProvider", function($routeProvider){
+            $routeProvider
+                .when("/home", {
                     templateUrl: "partial/home.html",
                     controller: "songsController"
                 })
-                .state("songs", {
-                    url: "/songs",
+                .when("/songs", {
                     templateUrl: "partial/songs.html",
-                    controller: "songsController",
-                    resolve:  {
-                        songsList: ['$http', function ($http) {
-                            return $http.get('songs')
-                                .then(function (response) {
-                                    return response.data;
-                                })
-                        }]
-                    }
+                    controller: "songsController"
                 })
-                .state("songByTitle", {
-                    url: "/songs/:title",
+                .when("/songs/:title", {
                     templateUrl: "partial/song.html",
                     controller: "songController"
                 })
-                .state("addSong", {
-                    url: "/addSong",
+                .when("/addSong", {
                     templateUrl: "partial/addSong.html",
                     controller: "songsController"
                 })
@@ -42,12 +30,10 @@ var app = angular
         .controller("homeController", function ($scope, $http, $log, $location, $anchorScroll){
 
         })
-        .controller("songsController", ['$scope','$http','$log','$state','$location','$anchorScroll', 'songs','songsList', function ($scope, $http, $log, $state, $location, $anchorScroll, songs, songsList){
-            // var vm = this;
-            // vm.reloadData = function () {
-            //     $state.reload();
-            // };
-            $scope.songs = songsList;
+        .controller("songsController",function ($scope, $http, $log, $route, $location, songService){
+            songService.getSongs().then(function (response) {
+                $scope.songs = response.data;
+            });
 
             $scope.go = function ( path ) {
                 $location.path( path );
@@ -87,7 +73,7 @@ var app = angular
             }
 
             $scope.newSong = {};
-        }])
+        })
         .controller("songController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
             $http({
                 method:'GET',
