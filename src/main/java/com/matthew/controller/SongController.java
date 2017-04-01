@@ -30,7 +30,7 @@ public class SongController{
     SongRepository songRepository;
 
     @GetMapping
-    public List<Song> getAll() {
+    public List<Song> findAll() {
         return (List<Song>) songRepository.findAll();
     }
 
