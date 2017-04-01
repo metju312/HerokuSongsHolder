@@ -36,40 +36,41 @@
 <div class="container-fluid display-table">
     <div class="row display-table-row">
         <!-- side menu -->
-        <div class="col-md-2 col-sm-1 hidden-xs side-menu display-table-cell valign-top" id="side-menu">
+        <div class="col-md-2 hidden-xs side-menu display-table-cell valign-top" id="side-menu">
             <div class="row logo-row">
                 <div class="col-md-12">
-                    <a class="logo hidden-sm hidden-xs" href="#/home">Songs<span>Holder</span></a>
+                    <a class="logo hidden-sm hidden-xs" href="/">Songs<span>Holder</span></a>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-warning add-song-button" ng-click="go('addSong')">Add Song</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="text" class="header-search-field hidden-sm hidden-xs" placeholder="Search for songs..." ng-model="searchSongText.title">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table songs-table">
-                        <tbody>
-                            <tr ng-repeat="song in songs | filter:searchSongText">
-                                <td>
-                                    <a href="#/songs/{{song.title}}">
-                                        <span>{{$index + 1}}. {{song.title}}</span>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <ul id="link-list">
+                        <li class="link active">
+                            <a href="/" data-target="/" data-toggle="collapse">
+                                <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                                <span class="hidden-sm hidden-xs">My Songs</span>
+                                <span class="label label-success pull-right hidden-sm hidden-xs">{{songs.length}}</span>
+                            </a>
+                        </li>
+
+                        <li class="link">
+                            <a href="#/addSong">
+                                <span class="glyphicon glyphicon-plus" aria hidden="true"></span>
+                                <span class="hidden-sm hidden-xs">Add Song</span>
+                            </a>
+                        </li>
+                        <li class="link">
+                            <a href="#settings">
+                                <span class="glyphicon glyphicon-cog" aria hidden="true"></span>
+                                <span class="hidden-sm hidden-xs">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
         <!-- main content -->
-        <div class="col-md-10 col-sm-11 display-table-cell valign-top box">
+        <div class="col-md-10 display-table-cell valign-top box">
             <div class="row">
                 <ng-view/>
             </div>
