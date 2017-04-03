@@ -7,9 +7,8 @@
     --green-color: #36C117;
     --green-label-color: #1AB394;
     --background-color: #F3F3F4;
-    --text-color: #676A6C;
-    --text-color: #676A6C;
-    --text-white-color: #d4d7d9;
+    --text-color: #a0a0a0;
+    --text-white-color: #ededed;
     --black-color: #0A0A0A;
     --link-active-color: #1a1a1a;
     --white-color: #FFFFFF;
@@ -23,6 +22,7 @@
     --background-dark-color: #1A1A1A;
     --background-normal-color: #212121;
     --background-light-color: #262626;
+    --background-hover-color: #2e2e2e;
     --background-active-color: #232323;
     --background-border-color: #171717;
 
@@ -114,10 +114,22 @@ body {
 }
 .songs-table a{
     text-decoration: none;
+    color: var(--text-white-color);
+}
+.songs-table tr{
+    color: var(--text-white-color);
+}
+.songs-table tr:hover{
+    background-color: var(--background-hover-color);
+}
+.songs-table thead tr{
     color: var(--text-color);
 }
-.songs-table a:hover{
-    color: var(--white-color);
+.songs-table thead tr:hover{
+    background-color: var(--background-normal-color);
+}
+.songs-table .darker-table-column{
+    color: var(--text-color);
 }
 .header-search-field{
     padding-top: 17px;
@@ -315,4 +327,11 @@ body {
 .partial-content{
     padding-left: 30px;
     padding-right: 30px;
+}
+.title-link{
+    text-decoration: none;
+}
+.title-link:hover, .title-link:visited, .title-link:active, .title-link:link{
+    text-decoration: none;
+    color: var(--text-white-color);
 }
