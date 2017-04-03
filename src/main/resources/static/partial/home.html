@@ -1,12 +1,13 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12 title-content">
-            <h2>Your songs</h2>
+            <h2>My Songs</h2>
         </div>
     </div>
     <div class="content">
         <div class="row">
             <div class="col-md-12">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 <input type="text" class="header-search-field hidden-sm hidden-xs" placeholder="Search for songs..." ng-model="searchSongText.title">
             </div>
         </div>
@@ -14,9 +15,9 @@
             <div class="col-md-12">
                 <table class="table songs-table">
                     <thead>
-                        <th>#</th>
+                        <th></th>
                         <th>Title</th>
-                        <th>Date</th>
+                        <th><span class=" glyphicon glyphicon-calendar" aria-hidden="true"></span></th>
                     </thead>
                     <tbody>
                     <tr ng-repeat="song in songs | filter:searchSongText" ng-click="showSong(song)">
@@ -29,7 +30,7 @@
                             <!--</a>-->
                             <span>{{song.title}}</span>
                         </td>
-                        <td class="col-md-4">
+                        <td class="col-md-4 darker-table-column">
                             <span>{{song.date | date:'yyyy-MM-dd HH:mm:ss'}}</span>
                         </td>
                     </tr>
