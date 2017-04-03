@@ -32,6 +32,10 @@ var app = angular
                 $scope.songs = response.data;
             });
 
+            $scope.showSong = function (song) {
+                $scope.go("/songs/" + song.title);
+            };
+
             $scope.reloadPage = function () {
                 $route.reload();
             };
