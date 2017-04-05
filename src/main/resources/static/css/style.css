@@ -312,8 +312,9 @@ body {
 }
 .song-title{
     color: var(--text-white-color);
-    margin: 0px;
-    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-bottom: 16px;
+    margin-top: 10px;
 }
 .add-song-form{
     padding: 20px;
@@ -377,4 +378,7 @@ body {
     background-color: var(--background-normal-color);
     border: 0;
     padding-left: 0px;
+}
+.scroll-div{
+    overflow-y:auto;
 }
