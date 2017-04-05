@@ -77,6 +77,15 @@ var app = angular
             $scope.showSong = function (song) {
                 $scope.go("/songs/" + song.title);
             };
+            //delete song deleteSongModal
+            $scope.deleteSong = function (song) {
+                $scope.songToDelete = song;
+                $('#deleteSongModal').modal('show');
+            };
+            $scope.deleteSong = function () {
+                $scope.songToDelete = song;
+                $('#deleteSongModal').modal('show');
+            };
         })
         .controller("songController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
             $http({
