@@ -22,9 +22,4 @@ public class Application extends RepositoryRestConfigurerAdapter {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-//    @Override
-//    public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-//        config.setBasePath("/api");
-//    }
 }
