@@ -310,6 +310,11 @@ body {
     color: var(--white-color);
     font-size: 20px;
 }
+.song-title{
+    color: var(--text-white-color);
+    margin: 0px;
+    margin-bottom: 10px;
+}
 .add-song-form{
     padding: 20px;
 }
@@ -334,4 +339,42 @@ body {
 .title-link:hover, .title-link:visited, .title-link:active, .title-link:link{
     text-decoration: none;
     color: var(--text-white-color);
+}
+.iframe-list{
+    padding: 6px 0px 6px 0px;
+}
+.link-list{
+    padding: 12px 0px 6px 0px;
+}
+.iframe-list li{
+    display:inline;
+    margin-right: 15px;
+}
+.iframe-list li iframe{
+    margin-left: 0px;
+}
+.link-list li{
+    display:inline;
+    border-radius: 17px;
+    border: 2px solid var(--primary-color);
+    padding: 8px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+.link-list a:hover, .link-list a:visited, .link-list a:active, .link-list a:link{
+    text-decoration: none;
+    color: var(--white-color);
+}
+.lyrics{
+    display: block;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    white-space: pre;
+    margin: 1em 0;
+    color: var(--text-white-color);
+    background-color: var(--background-normal-color);
+    border: 0;
+    padding-left: 0px;
 }
