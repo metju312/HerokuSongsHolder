@@ -17,16 +17,18 @@ public class Song {
     private long id;
     @NotEmpty
     private String title;
+
+    @Column(length = 2048)
     private String lyrics;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date date;
 
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "song")
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "song", cascade = {CascadeType.ALL})
     @JsonManagedReference
     private List<YTData> ytDatas = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "song")
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "song", cascade = {CascadeType.ALL})
     @JsonManagedReference
     private List<Link> links = new ArrayList<>();
 
