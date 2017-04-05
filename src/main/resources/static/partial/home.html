@@ -7,6 +7,27 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
+                <div class="modal" id="deleteSongModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Delete song</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                                <button type="button" ng-click="deleteSong()" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                 <input type="text" class="header-search-field hidden-sm hidden-xs" placeholder="Search for songs..." ng-model="searchSongText.title">
             </div>
@@ -17,21 +38,26 @@
                     <thead>
                         <th></th>
                         <th>Title</th>
-                        <th><span class=" glyphicon glyphicon-calendar" aria-hidden="true"></span></th>
+                        <th><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="song in songs | filter:searchSongText" ng-click="showSong(song)">
-                        <td class="col-md-2">
+                    <tr ng-repeat="song in songs | filter:searchSongText">
+                        <td class="col-md-2" ng-click="showSong(song)">
                             {{$index + 1}}
                         </td>
-                        <td class="col-md-6">
-                            <!--<a href="#/songs/{{song.title}}">-->
-                                <!--<span>{{song.title}}</span>-->
-                            <!--</a>-->
+                        <td class="col-md-6" ng-click="showSong(song)">
                             <span>{{song.title}}</span>
                         </td>
-                        <td class="col-md-4 darker-table-column">
+                        <td class="col-md-2 darker-table-column" ng-click="showSong(song)">
                             <span>{{song.date | date:'yyyy-MM-dd HH:mm:ss'}}</span>
+                        </td>
+                        <td class="col-md-1">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="editSong(song)"></span>
+                        </td>
+                        <td class="col-md-1">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteSong(song)"></span>
                         </td>
                     </tr>
                     </tbody>
@@ -40,3 +66,4 @@
         </div>
     </div>
 </div>
+
