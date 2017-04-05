@@ -43,6 +43,10 @@ public class LinkController{
         linkRepository.delete((long) id);
     }
 
+//    @PostMapping("/song")
+//    public List<Link> findBySong(@RequestParam("song") Song song) {
+//        return linkRepository.findBySong(song);
+//    }
     @PostMapping("/song")
     public List<Link> findBySong(@RequestBody Song song) {
         return linkRepository.findBySong(song);
