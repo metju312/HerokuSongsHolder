@@ -4,37 +4,30 @@
             <h2><a class="title-link" href="/">My Songs</a>     /     {{song.title}}</h2>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <p> Title: {{song.title}}</p>
-            <p> Lyrics: {{song.lyrics}}</p>
-            <p> Date: {{song.date}}</p>
-
-            <p> YTDatas:</p>
-            <table class="table">
-                <tbody>
-                <tr ng-repeat="yTData in yTDatas">
-                    <td>
-                        <p>{{yTData.iframe}}</p>
-                        <iframe width="420" height="315" src="{{yTData.iframe | trustAsResourceUrl}}"></iframe>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <p> Links:</p>
-            <table class="table">
-                <tbody>
-                <tr ng-repeat="link in links">
-                    <td>
-                        <p>{{link.title}}</p>
-                    </td>
-                    <td>
-                        <p>{{link.url}}</p>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="song-title">{{song.title}}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="link-list">
+                    <li ng-repeat="link in links"><a href="{{link.url}}">{{link.title}}</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="iframe-list">
+                    <li ng-repeat="yTData in yTDatas"><iframe width="140" height="105" src="{{yTData.iframe | trustAsResourceUrl}}"></iframe></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <pre class="lyrics">{{song.lyrics}}</pre>
+            </div>
         </div>
     </div>
 </div>
