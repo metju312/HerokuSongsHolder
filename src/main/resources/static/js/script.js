@@ -86,8 +86,13 @@ var app = angular
                 $scope.songToDelete = song;
                 $('#deleteSongModal').modal('show');
             };
+
+            $scope.uploadFile = function () {
+
+            }
         })
         .controller("songController", function ($scope, $http, $log, $location, $anchorScroll, $routeParams){
+            $scope.ytPrefix = 'http://www.youtube.com/embed/';
             $http({
             method:'GET',
             url:"/songs/search/findByTitle?title=" + $routeParams.title})
