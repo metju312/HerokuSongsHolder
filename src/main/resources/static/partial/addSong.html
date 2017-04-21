@@ -1,31 +1,44 @@
-<form class="add-song-form" ng-controller="addSongController">
-	<div class="form-group">
-		<label for="song-title-input">Type new song title</label>
-		<input class="form-control" type="text" placeholder="Title" id="song-title-input" ng-model="newSong.title">
-	</div>
-	<div class="form-group">
-		<label for="song-lyrics-textarea">Type new song lyrics</label>
-		<textarea class="form-control" id="song-lyrics-textarea" rows="20" ng-model="newSong.lyrics"></textarea>
-	</div>
-	<div class="form-group">
-		<label for="new-ytdatas">Add YouTube iframe's URL</label>
-		<div class="repeat-input-list" ng-repeat="newYtData in newYtDatas" id="new-ytdatas">
-			<input class="form-control" type="text" placeholder="Iframe url..." ng-model="newYtData.iframe">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 title-content">
+			<h2><a class="title-link">Add Song</a></h2>
 		</div>
 	</div>
-	<div class="form-group">
-		<button class="btn btn-primary" ng-click="addNewYtData()">New Ifrme</button>
-	</div>
-	<div class="form-group">
-		<label for="new-links">Add links</label>
-		<div class="repeat-input-list" ng-repeat="newLink in newLinks" id="new-links">
-			<input class="form-control" type="text" placeholder="Link's title..." ng-model="newLink.title">
-			<input class="form-control" type="text" placeholder="Link's url..." ng-model="newLink.url">
-            <hr>
+	<div class="content">
+		<div class="row">
+			<div class="col-md-12">
+				<form class="add-song-form" ng-controller="addSongController">
+					<div class="form-group">
+						<label for="song-title-input">Type new song title</label>
+						<input class="form-control" type="text" placeholder="Title" id="song-title-input" ng-model="newSong.title">
+					</div>
+					<div class="form-group">
+						<label for="song-lyrics-textarea">Type new song lyrics</label>
+						<textarea class="form-control" id="song-lyrics-textarea" rows="20" ng-model="newSong.lyrics"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="new-ytdatas">Add YouTube iframe's URL</label>
+						<div class="repeat-input-list" ng-repeat="newYtData in newYtDatas" id="new-ytdatas">
+							<input class="form-control" type="text" placeholder="Iframe url..." ng-model="newYtData.iframe">
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary" ng-click="addNewYtData()">New Ifrme</button>
+					</div>
+					<div class="form-group">
+						<label for="new-links">Add links</label>
+						<div class="repeat-input-list" ng-repeat="newLink in newLinks" id="new-links">
+							<input class="form-control" type="text" placeholder="Link's title..." ng-model="newLink.title">
+							<input class="form-control" type="text" placeholder="Link's url..." ng-model="newLink.url">
+							<hr>
+						</div>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary" ng-click="addNewLink()">New Link</button>
+					</div>
+					<button type="submit" class="btn btn-success submit-button" ng-click="addNewSong(newSong)">Submit</button>
+				</form>
+			</div>
 		</div>
 	</div>
-	<div class="form-group">
-		<button class="btn btn-primary" ng-click="addNewLink()">New Link</button>
-	</div>
-	<button type="submit" class="btn btn-primary submit-button" ng-click="addNewSong(newSong)">Submit</button>
-</form>
+</div>
