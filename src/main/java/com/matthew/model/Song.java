@@ -18,7 +18,7 @@ public class Song {
     @NotEmpty
     private String title;
 
-    @Column(length = 2048)
+    @Column(length = 14048)
     private String lyrics;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
