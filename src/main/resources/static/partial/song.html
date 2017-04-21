@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="iframe-list">
-                    <li ng-repeat="yTData in yTDatas"><iframe width="140" height="105" src="{{yTData.iframe | trustAsResourceUrl}}"></iframe></li>
+                    <li ng-repeat="yTData in yTDatas"><iframe width="140" height="105" ng-src="{{ytPrefix + yTData.iframe | trustAsResourceUrl}}"></iframe></li>
                 </ul>
             </div>
         </div>
