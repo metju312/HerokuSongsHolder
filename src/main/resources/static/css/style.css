@@ -378,6 +378,7 @@ body {
     background-color: var(--background-normal-color);
     border: 0;
     padding-left: 0px;
+    padding-bottom: 20px;
 }
 .scroll-div{
     overflow-y:auto;
